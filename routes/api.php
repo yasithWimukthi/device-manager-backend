@@ -20,4 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 // device routes
+Route::get('/devices', [DeviceController::class, 'index']);
 Route::post('/devices', [DeviceController::class, 'store']);
