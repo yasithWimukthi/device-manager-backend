@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Device;
+use App\Models\Location;
 use Illuminate\Http\Request;
 
 class DeviceController extends Controller
@@ -52,5 +53,27 @@ class DeviceController extends Controller
             return response()->json(['message' => 'Device creation failed', 'data' => $e->getMessage()], 500);
         }
 
+    }
+
+    /**
+     * remove device from location
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function detachLocation(Request $request)
+    {
+        try {
+            $validatedData = $request->validate([
+                'device_id' => 'required|integer|exists:devices,id',
+            ]);
+
+            $device = Device::find($validatedData['device_id']);
+            $device->location_id = null;
+            $device->save();
+            $locations = Location::with('devices')->get();
+            return response()->json(['message' => 'Device detached successfully', 'data' => $locations], 200);
+        }catch (\Exception $e){
+            return response()->json(['message' => 'Device detachment failed', 'data' => $e->getMessage()], 500);
+        }
     }
 }
