@@ -28,3 +28,4 @@ Route::post('/devices/detach', [DeviceController::class, 'detachLocation']);
 //location routes
 Route::get('/locations', [LocationController::class, 'index']);
 Route::post('/locations', [LocationController::class, 'store']);
+Route::post('/locations/add-devices', [LocationController::class, 'addDevices']);
