@@ -16,4 +16,9 @@ class Device extends Model
         'date_created',
         'status',
     ];
+
+    public function location()
+    {
+        return $this->belongsTo(Location::class);
+    }
 }
