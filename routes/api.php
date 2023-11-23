@@ -25,4 +25,5 @@ Route::get('/devices', [DeviceController::class, 'index']);
 Route::post('/devices', [DeviceController::class, 'store']);
 
 //location routes
+Route::get('/locations', [LocationController::class, 'index']);
 Route::post('/locations', [LocationController::class, 'store']);
