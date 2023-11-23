@@ -47,6 +47,6 @@ class LocationController extends Controller
         }catch (\Exception $e){
             return response()->json(['message' => 'Location creation failed', 'data' => $e->getMessage()], 500);
         }
-
     }
+
 }
