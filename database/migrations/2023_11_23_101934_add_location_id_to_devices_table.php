@@ -12,6 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('devices', function (Blueprint $table) {
+            //check if the column already exists
+            if (Schema::hasColumn('devices', 'location_id')) {
+                return;
+            }
             $table->foreignId('location_id')->nullable()->constrained(); // 'constrained' creates a foreign key relationship
         });
     }

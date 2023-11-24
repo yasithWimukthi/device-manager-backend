@@ -15,4 +15,9 @@ class Location extends Model
     {
         return $this->hasMany(Device::class);
     }
+
+    public function organization()
+    {
+        return $this->belongsToMany(Organization::class, 'organization_location', 'location_id', 'organization_id');
+    }
 }
