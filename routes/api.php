@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\OrganizationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,3 +30,6 @@ Route::post('/devices/detach', [DeviceController::class, 'detachLocation']);
 Route::get('/locations', [LocationController::class, 'index']);
 Route::post('/locations', [LocationController::class, 'store']);
 Route::post('/locations/add-devices', [LocationController::class, 'addDevices']);
+
+//organization routes
+Route::post('/organizations', [OrganizationController::class, 'store']);
