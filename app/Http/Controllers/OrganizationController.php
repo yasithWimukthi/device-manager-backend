@@ -7,6 +7,26 @@ use Illuminate\Http\Request;
 
 class OrganizationController extends Controller
 {
+
+    /**
+     * get all organizations
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function index() {
+        try {
+            // eager load locations and their devices
+            $organizations = Organization::with('locations.devices')->get();
+            return response()->json(['message' => 'Organizations retrieved successfully', 'data' => $organizations], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Organizations retrieval failed', 'data' => $e->getMessage()], 500);
+        }
+    }
+
+    /**
+     * store organization details
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function store(Request $request)
     {
         try {
