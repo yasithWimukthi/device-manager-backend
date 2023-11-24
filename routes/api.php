@@ -32,4 +32,5 @@ Route::post('/locations', [LocationController::class, 'store']);
 Route::post('/locations/add-devices', [LocationController::class, 'addDevices']);
 
 //organization routes
+Route::get('/organizations', [OrganizationController::class, 'index']);
 Route::post('/organizations', [OrganizationController::class, 'store']);
