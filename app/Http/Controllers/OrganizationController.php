@@ -39,8 +39,8 @@ class OrganizationController extends Controller
             $organization = Organization::create($validatedData);
             // add locations to organization
             $organization->locations()->attach($request->locations);
-
-            return response()->json(['message' => 'Organization created successfully', 'data' => $organization], 201);
+            $organizations = Organization::with('locations.devices')->get();
+            return response()->json(['message' => 'Organization created successfully', 'data' => $organizations], 201);
         } catch (\Exception $e) {
             return response()->json(['message' => 'Organization creation failed', 'data' => $e->getMessage()], 500);
         }
